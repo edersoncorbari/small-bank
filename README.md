@@ -79,8 +79,11 @@ __________________________________________________________________________
 To install the required packages see the topics of each system.
 
 * FREEBSD-11
+
+```shell
    pkg install clojure leiningen
    pkg install bash
+```
 
 * LINUX/UBUNTU-18
    (https://lispcast.com/clojure-ubuntu/)
