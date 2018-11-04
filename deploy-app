@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Author:    Ederson Corbari <ecorbari at protonmail.com> 
+# Created:   05.11.2018
+
+PKG="duck-0.0.1-alpha"
+
+#lein cljfmt check &&
+#lein midje
+
+echo "Wait... Create package."
+rm -rf ${HOME}/${PKG}
+mkdir ${HOME}/${PKG}
+
+cp -rf * ${HOME}/${PKG}
+find ${HOME}/${PKG} -type d -name '.[^.]*' -prune -exec echo rm -rf {} +
+rm -rf ${HOME}/${PKG}/target
+
+cd ${HOME} &&
+tar -jcf ${PKG}.tar.bz2 ${PKG} && cd -

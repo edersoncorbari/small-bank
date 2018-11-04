@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Author:    Ederson Corbari <ecorbari at protonmail.com> 
+# Created:   05.11.2018
+
+DT=`date +'%d/%m/%Y'`
+IP='127.0.0.1'
+
+function put-line() {
+  printf '%85s\n' | tr ' ' -
+}
+
+function server-http-is-up() {
+  put-line	
+  err="Server is down! Aborting..."
+  curl http://${IP}:3000 -s -f -o /dev/null || echo -e ${err} && exit -1 | echo 
+  curl -H "Content-Type: application/json" -X GET http://${IP}:3000 && sleep 1 
+}
+
+function add-transactions() {
+  put-line	
+  for x in {1..15}; do
+    c=$(echo "sqrt(${x}*1000*100)" | bc -l)
+    d="Add money account: ${x} -> Crediting: ${c}" && echo ${d}
+    curl -H "Content-Type: application/json" -X POST -d \
+      "{\"account\":${x}, \"amount\":${c}, \"description\":\"${d}\", \"date\":\"${DT}\"}" \
+      http://${IP}:3000/transaction/add
+  done 
+}
+
+function rm-transactions() {
+  put-line	
+  for x in {1..15}; do
+    c=$(echo "sqrt(${x}*1000)" | bc -l)
+    d="Remove money account: ${x} -> Debting: ${c}" && echo ${d}
+    curl -H "Content-Type: application/json" -X POST -d \
+      "{\"account\":${x}, \"amount\":-${c}, \"description\":\"${d}\", \"date\":\"${DT}\"}" \
+      http://${IP}:3000/transaction/rm
+  done 
+}
+
+function get-balances() {
+  put-line	
+  for x in {1..15}; do
+    echo "Get balance account: ${x}"
+    curl -H "Content-Type: application/json" -X GET http://${IP}:3000/account/${x}/balance && echo
+  done
+}
+
+[[ "$(command -v curl)" ]] || { echo "Sorry! Command (curl) is not installed...." 1>&2 && exit -1; }
+
+server-http-is-up && echo && 
+add-transactions && echo
+get-balances && echo
+rm-transactions && echo
+get-balances && echo
+
+exit 0

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Author:    Ederson Corbari <ecorbari at protonmail.com> 
+# Created:   05.11.2018
+echo "Wait... Launch Small-Bank Application." &&
+lein ring server-headless
