@@ -4,6 +4,11 @@
 Created: Thu 18 Oct 03:34:12 -03 2018
 Application Version: 0.0.1-alpha
 
+An article was published explaining:
+
+ * [https://www.javacodegeeks.com/2019/02/small-bank-application-clojure.html](https://www.javacodegeeks.com/2019/02/small-bank-application-clojure.html)
+ * [https://dzone.com/articles/building-a-small-bank-with-clojure](https://dzone.com/articles/building-a-small-bank-with-clojure)
+ 
 This file is intended to demonstrate the execution and testing of the Duck application. Application created for studies and 
 tests with clojure language.
 
