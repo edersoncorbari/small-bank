@@ -10,7 +10,7 @@
             [clj-time.core :as time]
             [clj-time.local :as timelocal]
             [clj-time.format :as format]
-            [duck.persistence :as persistence]
+            [duck.balance :as balance]
             [duck.utility :as utility]))
 
 (defn dt-format [x]

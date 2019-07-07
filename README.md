@@ -98,6 +98,8 @@ __________________________________________________________________________
 (sec-03) RUNNING THE MCDUCK APPLICATION
 __________________________________________________________________________
 
+Important: Version JDK used to build this project is jdk1.8.0.
+
 To run the project and perform the tests please follow the steps below:
 
 1) To run the project please unzip the file:

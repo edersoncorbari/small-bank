@@ -9,7 +9,7 @@
             [ring.middleware.json :refer [wrap-json-response]]
             [ring.util.response :refer [response]]
             [clojure.data.json :as json]
-            [duck.persistence :as persistence]
+            [duck.balance :as balance]
             [duck.utility :as utility]))
 
 (defn ^:private msg-index
@@ -34,7 +34,7 @@
                (catch Exception e nil))]
     (if (utility/json-standardized? data)
       {:status 200
-       :body (persistence/log-transaction data)}
+       :body (balance/log-transaction data)}
       {:status 400
        :body (msg-bad-request)})))
 
@@ -55,7 +55,7 @@
     (if (utility/numeric? account)
       (let [account (Long/parseLong account)]
         {:status 200
-         :body (persistence/get-balance account)})
+         :body (balance/get-balance account)})
       {:status 400
        :body (msg-bad-request)}))
 

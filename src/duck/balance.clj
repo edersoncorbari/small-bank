@@ -1,6 +1,6 @@
 ;; Author:    Ederson Corbari <ecorbari at protonmail.com> 
 ;; Created:   05.11.2018
-(ns duck.persistence
+(ns duck.balance
   "Here is the logic of the Checks/Balance where the user can register monetary
   values, update and debit following:
 
